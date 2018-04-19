@@ -1,0 +1,33 @@
+{
+  "name": "amplify",
+  "version": "1.0.0",
+  "description": "gulp task to build amp pages",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.23.6",
+    "gulp-amphtml-validator": "^1.0.2",
+    "gulp-cssnano": "^2.1.3",
+    "gulp-htmlmin": "^4.0.0",
+    "gulp-image": "^4.3.0",
+    "gulp-inject": "^4.3.2",
+    "gulp-inject-string": "^1.1.1",
+    "gulp-plumber": "^1.2.0"
+  },
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nickFalcone/amplify.git"
+  },
+  "author": "Nick Falcone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nickFalcone/amplify/issues"
+  },
+  "homepage": "https://github.com/nickFalcone/amplify#readme"
+}
