@@ -25,7 +25,7 @@
     "url": "git+https://github.com/nickFalcone/amplify.git"
   },
   "author": "Nick Falcone",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nickFalcone/amplify/issues"
   },
