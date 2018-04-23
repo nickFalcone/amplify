@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <script async src="https://cdn.ampproject.org/v0.js"></script>
+    <!-- including amp-bind because it is so widely used/needed -->
     <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
     <title>Amplify</title>
     <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
@@ -25,12 +26,9 @@
       </script>
     </amp-state>
 
-    <h1>Heading</h1>
+    <h1>Amplify</h1>
 
     <amp-img width="400" height="400" src="img/Large_Scaled_Forest_Lizard.jpg" alt="lizard"></amp-img>
-    <p [text]="'Hello ' + foo">Hello World</p>
-    <button on="tap:AMP.pushState({foo: 'Nick'})">Set 'foo' to Nick</button>
-
+    
   </body>
-
 </html>

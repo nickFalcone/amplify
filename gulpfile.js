@@ -8,6 +8,8 @@ const image = require('gulp-image');
 const fs = require("fs");
 const inject = require('gulp-inject-string');
 const browser = require('browser-sync');
+const del = require('del');
+const gulpSequence = require('gulp-sequence')
 const reload = browser.reload;
 
 gulp.task('scss', () => {
@@ -20,7 +22,7 @@ gulp.task('scss', () => {
 
 gulp.task('html', () => {
     let cssContent = fs.readFileSync("src/style/style.css", "utf8");
-    gulp.src("src/components/index.html")
+    gulp.src("src/components/*.html")
         .pipe(inject.after('style amp-custom>', cssContent))
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(gulp.dest("public/"))
@@ -30,7 +32,7 @@ gulp.task('html', () => {
 });
 
 gulp.task('amphtml:validate', () => {
-  return gulp.src("public/index.html")
+  return gulp.src("public/*.html")
     .pipe(gulpAmpValidator.validate())
     .pipe(gulpAmpValidator.format())
     .pipe(gulpAmpValidator.failAfterError());
@@ -69,8 +71,15 @@ gulp.task('watch', () => {
   gulp.watch("src/style/style.css", ['html']);
   gulp.watch("src/components/*.html", ['html']);
   gulp.watch("src/img/**", ['images']);
-  gulp.watch("public/index.html", ['amphtml:validate'])
+  gulp.watch("public/*.html", ['amphtml:validate'])
 });
 
-gulp.task('default', ['scss', 'html', 'images', 'amphtml:validate', 'watch', 'serve']);
+// gulp.task('build', ['scss', 'html', 'images', 'amphtml:validate', 'watch', 'serve']);
 
+// clean task to keep public directory in sync when files are removed from /src
+gulp.task('clean', () => {
+    return del('public/**', {force:true});
+});
+
+// clean needs to run first. then build html/css and compress images.  then validate. then serve, and watch content.
+gulp.task('default', gulpSequence('clean', ['html', 'scss', 'images'], 'amphtml:validate', 'serve', 'watch'));
