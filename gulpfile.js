@@ -31,6 +31,14 @@ gulp.task('html', () => {
     }));
 });
 
+gulp.task('data', () => {
+    gulp.src("src/data/data.json")
+        .pipe(gulp.dest("public/data/"))
+        .pipe(reload({
+            stream: true
+    }));
+});
+
 gulp.task('amphtml:validate', () => {
   return gulp.src("public/*.html")
     .pipe(gulpAmpValidator.validate())
@@ -70,6 +78,7 @@ gulp.task('watch', () => {
   gulp.watch("src/style/style.scss", ['scss']);
   gulp.watch("src/style/style.css", ['html']);
   gulp.watch("src/components/*.html", ['html']);
+  gulp.watch("src/data/data.json", ['data']);
   gulp.watch("src/img/**", ['images']);
   gulp.watch("public/*.html", ['amphtml:validate'])
 });
@@ -82,4 +91,4 @@ gulp.task('clean', () => {
 });
 
 // clean needs to run first. then build html/css and compress images.  then validate. then serve, and watch content.
-gulp.task('default', gulpSequence('clean', ['html', 'scss', 'images'], 'amphtml:validate', 'serve', 'watch'));
+gulp.task('default', gulpSequence('clean', ['html', 'scss', 'images', 'data'], 'amphtml:validate', 'serve', 'watch'));
