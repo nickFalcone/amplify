@@ -27,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/nickFalcone/amplify/issues"
   },
-  "homepage": "https://github.com/nickFalcone/amplify#readme"
+  "homepage": "https://github.com/nickFalcone/amplify#readme",
+  "devDependencies": {
+    "gulp-sequence": "^1.0.0"
+  }
 }

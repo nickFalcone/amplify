@@ -74,21 +74,19 @@ gulp.task('images', () => {
     .pipe(gulp.dest('public/img/'))
 });
 
-gulp.task('watch', () => {
-  gulp.watch("src/style/style.scss", ['scss']);
-  gulp.watch("src/style/style.css", ['html']);
-  gulp.watch("src/components/*.html", ['html']);
-  gulp.watch("src/data/data.json", ['data']);
-  gulp.watch("src/img/**", ['images']);
-  gulp.watch("public/*.html", ['amphtml:validate'])
-});
-
-// gulp.task('build', ['scss', 'html', 'images', 'amphtml:validate', 'watch', 'serve']);
-
 // clean task to keep public directory in sync when files are removed from /src
 gulp.task('clean', () => {
     return del('public/**', {force:true});
 });
 
-// clean needs to run first. then build html/css and compress images.  then validate. then serve, and watch content.
+// clean needs to run first. then build html/css and compress images.  then validate. then serve, and finally watch task.
 gulp.task('default', gulpSequence('clean', ['html', 'scss', 'images', 'data'], 'amphtml:validate', 'serve', 'watch'));
+
+gulp.task('watch', () => {
+    gulp.watch("src/style/style.scss", ['scss']);
+    gulp.watch("src/style/style.css", ['html']);
+    gulp.watch("src/components/*.html", ['html']);
+    gulp.watch("src/data/data.json", ['data']);
+    gulp.watch("src/img/**", ['images']);
+    gulp.watch("public/*.html", ['amphtml:validate'])
+  });
