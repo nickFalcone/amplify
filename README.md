@@ -1,5 +1,5 @@
 # amplify
-
+![amplifier icon](https://raw.githubusercontent.com/nickFalcone/amplify/master/public/img/amplifier.svg)
 Build AMP Pages quickly. Minify/compress files. AMP validation from the command line. [Learn more about AMP](https://www.ampproject.org/learn/overview/).
 
 ## Getting Started
@@ -12,14 +12,12 @@ $ gulp
 ```
 
 ## What amplify does
-amplify has six default Gulp tasks to simplify building AMP pages
+amplify simplifies the process of building AMP pages in four steps:
 
-1. Deletes the contents of the Public directory prior to build 
-2. Converts scss => css => minified css => piped into the ```<style amp-custom>``` [tag required by AMP](https://www.ampproject.org/docs/design/responsive/style_pages)
-3. Minifies html and includes required amp boilerplate/tags
-4. Compresses images
-5. Validates AMP using [gulp-amphtml-validator](https://www.ampproject.org/docs/fundamentals/validate#npm-packages-for-ci)
-6. Serves project locally  
+1. Converts scss => css => minified css => piped into the ```<style amp-custom>``` [tag required by AMP](https://www.ampproject.org/docs/design/responsive/style_pages)
+2. Minifies html and includes required amp boilerplate/tags
+3. Compresses images
+4. Validates AMP using [gulp-amphtml-validator](https://www.ampproject.org/docs/fundamentals/validate#npm-packages-for-ci)
 
 ## Project Process/Structure
 * HTML files from src/components are minified and piped to Public 

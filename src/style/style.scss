@@ -2,10 +2,73 @@
 // also do not alter the <style amp-custom> tag in html
 // gulp converts scss => css => minified css => injectes into <style amp-custom> tag
 
-// adding as a test to make sure scss is linked
-
 body {
-  h1 {
-    color: red;
+  min-height: 100vh;
+  background: linear-gradient(45deg,#fff, rgb(231, 251, 255));
+  .logoWrap {
+    width: 100%;
+    display: inline-block;
+    .icon {
+      margin: 10px;
+    }
+    h1 {
+      vertical-align: bottom;
+      display: inline-block;
+      color: #1C79C0;
+      font-size: 30px;
+      line-height: 30px;
+      margin-left: 10px;
+    }
+  }
+  #ex1 {
+    span {
+      font-size: 20px;
+    }
+    button {
+      font-size: 20px;
+      border: 1px solid #666;
+      padding: 10px;
+      margin: 20px;
+      border-radius: 5px; 
+    }
+  }
+  h2 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    padding: 10px;
+    color: #1C79C0;
+  }
+  code {
+    padding: 10px;
+    color: #666;
+  }
+  a {
+    color: #0DD3FF;
+    text-decoration: underline;
+  }
+  .exTitle {
+    text-align: left;
+    font-size: 16px;
+    line-height: 16px;
+    width: 100vw;
+    height: 40px;
+    padding: 5px 5px 5px 15px;
+    outline: none;
+    border: none;
+    background-color: #1C79C0;
+    color: #fff;
+    border: 1px solid #fff;
+  }
+  .ex {
+    padding: 10px;
+  }
+  .txtc {
+    text-align: center;
+  }
+  .bot {
+    position: absolute;
+    bottom: 0;
   }
 }
