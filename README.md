@@ -1,5 +1,5 @@
 # amplify
-![amplifier icon](https://raw.githubusercontent.com/nickFalcone/amplify/master/public/img/amplifier.svg)
+![amplifier icon](https://github.com/nickFalcone/amplify/blob/master/src/img/amplifier.svg)
 Build AMP Pages quickly. Minify/compress files. AMP validation from the command line. [Learn more about AMP](https://www.ampproject.org/learn/overview/).
 
 ## Getting Started
