@@ -1,6 +1,8 @@
 # amplify
-![amplifier icon](https://github.com/nickFalcone/amplify/blob/master/src/img/amplifier.svg)
+![amplifier icon | width=100](https://github.com/nickFalcone/amplify/blob/master/src/img/amplifier.svg)
 Build AMP Pages quickly. Minify/compress files. AMP validation from the command line. [Learn more about AMP](https://www.ampproject.org/learn/overview/).
+
+I created Amplify to help me build AMP pages. I wanted an easy  
 
 ## Getting Started
 
@@ -14,7 +16,7 @@ $ gulp
 ## What amplify does
 amplify simplifies the process of building AMP pages in four steps:
 
-1. Converts scss => css => minified css => piped into the ```<style amp-custom>``` [tag required by AMP](https://www.ampproject.org/docs/design/responsive/style_pages)
+1. Converts scss => css => minified css => piped into the ```<style amp-custom>``` [tag as required by AMP](https://www.ampproject.org/docs/design/responsive/style_pages)
 2. Minifies html and includes required amp boilerplate/tags
 3. Compresses images
 4. Validates AMP using [gulp-amphtml-validator](https://www.ampproject.org/docs/fundamentals/validate#npm-packages-for-ci)
