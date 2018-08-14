@@ -4,7 +4,7 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(45deg,#fff, rgb(231, 251, 255));
+  background: linear-gradient(45deg,rgb(188, 244, 255), #fff);
   .logoWrap {
     width: 100%;
     display: inline-block;
@@ -70,5 +70,16 @@ body {
   .bot {
     position: absolute;
     bottom: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 700px) {
+  body {
+    .wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
   }
 }

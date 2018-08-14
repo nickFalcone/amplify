@@ -1,7 +1,7 @@
 # amplify
 Build AMP Pages quickly. Minify/compress files. AMP validation from the command line. [Learn more about AMP](https://www.ampproject.org/learn/overview/).
 
-I created Amplify to help me build AMP pages. I wanted an easy  
+I created Amplify to help me build AMP pages. I was tired of writting CSS in the `<head>` and wanted an easy way to validate the page.
 
 ## Getting Started
 
