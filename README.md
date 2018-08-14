@@ -1,5 +1,5 @@
 # amplify
-![amplifier icon | width=100](https://github.com/nickFalcone/amplify/blob/master/src/img/amplifier.svg)
+![amplifier icon](https://github.com/nickFalcone/amplify/blob/master/src/img/amplifier.svg =50x50)
 Build AMP Pages quickly. Minify/compress files. AMP validation from the command line. [Learn more about AMP](https://www.ampproject.org/learn/overview/).
 
 I created Amplify to help me build AMP pages. I wanted an easy  
