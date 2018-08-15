@@ -9,7 +9,7 @@
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
   <title>Amplify</title>
   <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
   <script type="application/ld+json">
     {
       "@context": "http://schema.org"
@@ -38,9 +38,10 @@
   </div>
   
 
-  <p><em>A static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by Example</a> and personal experience.</em></p>
+  <p><strong>A static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by Example</a> and personal experience.</strong></p>
 
-  <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage instructions.</p>
+  <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage instructions</p>
+  <p>Made by <a href="http://nickfalcone.net">Nick Falcone</a></p>
 
   <h2>
       <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' " class="exTitle">&#9660; Ex. 1: Simple Counter</button>
@@ -79,14 +80,7 @@
     <p>The default value for <a href="https://www.ampproject.org/docs/reference/components/amp-list">AMP List</a> is "items".  {items: [...]}.</p>
     <p>Our JSON file has one array, "items", containing objects with a "title" and "songLink"</p>
     <code>
-        {
-          "items": [
-            {
-              "title": "Ten Cent Pistol",
-              "songLink": "https://open.spotify.com/track/2qoLCpTRYv6h8Vx94hxkvl"
-            }
-          ]
-        }
+        {"items": [{"title": "Ten Cent Pistol","songLink": "https://open.spotify.com/track/..."}]}
     </code>
     <p>An <a href="https://www.ampproject.org/docs/reference/components/amp-mustache">AMP Mustache</a> template is placed inside the AMP List to render all objects within the items array. Results below:</p>
     
