@@ -4,7 +4,7 @@
   "description": "gulpfile to build AMP pages quickly. Minify/compress files. Command line validation.",
   "main": "gulpfile.js",
   "dependencies": {
-    "browser-sync": "^2.24.4",
+    "browser-sync": "^2.24.7",
     "del": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-amphtml-validator": "^1.0.2",
@@ -13,6 +13,7 @@
     "gulp-image": "^4.3.0",
     "gulp-inject-string": "^1.1.1",
     "gulp-plumber": "^1.2.0",
+    "gulp-purifycss": "^0.2.0",
     "gulp-sass": "^4.0.1"
   },
   "scripts": {

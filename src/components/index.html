@@ -1,5 +1,6 @@
 <!doctype html>
 <html amp lang="en">
+
 <head>
   <meta charset="utf-8">
   <script async src="https://cdn.ampproject.org/v0.js"></script>
@@ -7,6 +8,8 @@
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
+  <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
+  <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
   <title>Amplify</title>
   <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
@@ -15,88 +18,159 @@
       "@context": "http://schema.org"
     }
   </script>
-  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript>
+    <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>
+  </noscript>
   <style amp-custom></style>
   <meta name="amp-link-variable-allowed-origin" content="https://example.com">
 </head>
+
 <body>
-  <div class="wrap">
-  <amp-state id="appState">
+  <amp-animation id="showAnim" layout="nodisplay">
     <script type="application/json">
+          {
+            "duration": "200ms",
+             "fill": "both",
+             "iterations": "1",
+             "direction": "alternate",
+             "animations": [
+               {
+                 "selector": "#scrollToTopButton",
+                 "keyframes": [
+                   { "opacity": "1", "visibility": "visible" }
+                 ]
+               }
+             ]
+          }
+        </script>
+  </amp-animation>
+  <!-- ... and the second one is for adding the button.-->
+  <amp-animation id="hideAnim" layout="nodisplay">
+    <script type="application/json">
+         {
+           "duration": "200ms",
+             "fill": "both",
+             "iterations": "1",
+             "direction": "alternate",
+             "animations": [
+               {
+                 "selector": "#scrollToTopButton",
+                 "keyframes": [
+                   { "opacity": "0", "visibility": "hidden" }
+                 ]
+               }
+             ]
+         }
+       </script>
+  </amp-animation>
+  <!-- We use `amp-position-observer` to start the animation when the user starts to scroll. -->
+  <div id="marker">
+    <amp-position-observer on="enter:hideAnim.start; exit:showAnim.start" layout="nodisplay"></amp-position-observer>
+  </div>
+  <div class="wrap" id="top-page">
+    <amp-state id="appState">
+      <script type="application/json">
         {
           "i": 0,
           "ex1_Hidden": false,
           "ex2_Hidden": false,
-          "ex3_Hidden": false
+          "ex3_Hidden": false,
+          "ex4_Hidden": false,
+          "lightboxHidden": true
         }
       </script>
-  </amp-state>
+    </amp-state>
 
-  <div class="logoWrap">
-    <amp-img width="50" height="50" src="img/amplifier.svg" alt="amplifier icon" class="icon"></amp-img>
-    <h1>Amplify</h1>
-  </div>
-  
+    <div class="logoWrap">
+      <amp-img width="50" height="50" src="img/amplifier.svg" alt="amplifier icon" class="icon"></amp-img>
+      <h1>Amplify</h1> <p><strong>A static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by
+        Example</a> and personal experience.</strong></p>
+    </div>
 
-  <p><strong>A static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by Example</a> and personal experience.</strong></p>
+    <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage
+      instructions. Made by <a href="http://nickfalcone.net">Nick Falcone</a></p>
 
-  <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage instructions</p>
-  <p>Made by <a href="http://nickfalcone.net">Nick Falcone</a></p>
+    <h2>
+      <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' "
+        class="exTitle">&#9660; Ex. 1: Simple Counter</button>
+    </h2>
 
-  <h2>
-      <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' " class="exTitle">&#9660; Ex. 1: Simple Counter</button>
-  </h2>
+    <div [hidden]="ex1_Hidden" id="ex1" class="ex txtc">
+      <p>"i" is initialized to 0 in <a href="https://www.ampproject.org/docs/reference/components/amp-bind#initializing-state-with-amp-state">AMP
+          State</a></p>
+      <p>Three buttons manipulate i, respectively: i-=1; i+=1; i=0</p>
+      <!-- simple add/subtract -->
+      <button on="tap:AMP.setState({ i: i - 1 })">-</button>
+      <!-- we want a '+' before i, to define i as a number (and not a string) . 0 is our default visual state. it is set at 0 above -->
+      <span [text]="+i">0</span>
+      <button on="tap:AMP.setState({ i: i + 1 })">+</button>
+      <br>
+      <button on="tap:AMP.setState({ i: 0 })">Reset</button>
+    </div>
 
-  <div [hidden]="ex1_Hidden" id="ex1" class="ex txtc">
-    <p>"i" is initialized to 0 in <a href="https://www.ampproject.org/docs/reference/components/amp-bind#initializing-state-with-amp-state">AMP State</a></p>
-    <p>Three buttons manipulate i, respectively: i-=1; i+=1; i=0</p>
-    <!-- simple add/subtract -->
-    <button on="tap:AMP.setState({ i: i - 1 })">-</button>
-    <!-- we want a '+' before i, to define i as a number (and not a string) . 0 is our default visual state. it is set at 0 above -->
-    <span [text]="+i">0</span>
-    <button on="tap:AMP.setState({ i: i + 1 })">+</button>
-    <br>
-    <button on="tap:AMP.setState({ i: 0 })">Reset</button>
-  </div>
+    <h2>
+      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '&#9660; Ex. 2: Passing Parameters from URL' : '&#9658; Ex. 2: Passing Parameters from URL' "
+        class="exTitle">&#9660; Ex. 2: Passing Parameters from URL</button>
+    </h2>
 
-  <h2>
-      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '&#9660; Ex. 2: Passing Parameters from URL' : '&#9658; Ex. 2: Passing Parameters from URL' " class="exTitle">&#9660; Ex. 2: Passing Parameters from URL</button>
-  </h2>
+    <div [hidden]="ex2_Hidden" id="ex2" class="ex">
+      <!-- query params -->
+      <!-- https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md -->
+      <!-- with a URL of "http://localhost:3000/?abc=something" clicking link below should apend ?abc=something to destination URL -->
+      <p>Add <strong>/?abc=something</strong> to the end of the URL, and press enter. The link below should resolve to:<br>
+        <em>www.example.com/?abc=something.</em></p>
+      <a href="https://example.com?abc=QUERY_PARAM(abc)" data-amp-replace="QUERY_PARAM">Example 2</a>
+    </div>
 
-  <div [hidden]="ex2_Hidden" id="ex2" class="ex">
-    <!-- query params -->
-    <!-- https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md -->
-    <!-- with a URL of "http://localhost:3000/?abc=something" clicking link below should apend ?abc=something to destination URL -->
-    <p>Add <strong>/?abc=something</strong> to the end of the URL, and press enter. The link below should resolve to:<br> <em>www.example.com/?abc=something.</em></p>
-    <a href="https://example.com?abc=QUERY_PARAM(abc)" data-amp-replace="QUERY_PARAM">Example 2</a>
-  </div>
+    <h2>
+      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '&#9660; Ex. 3: Retrieve Data with AMP List' : '&#9658; Ex. 3: Retrieve Data with AMP List' "
+        class="exTitle">&#9660; Ex. 3: Retrieve Data with AMP List</button>
+    </h2>
 
-  <h2>
-      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '&#9660; Ex. 3: Retrieve Data with AMP List' : '&#9658; Ex. 3: Retrieve Data with AMP List' " class="exTitle">&#9660; Ex. 3: Retrieve Data with AMP List</button>
-  </h2>
-
-  <div [hidden]="ex3_Hidden" id="ex3" class="ex">
-    <!-- mustache template inside amp-list that consumes data.json -->
-    <p>The default value for <a href="https://www.ampproject.org/docs/reference/components/amp-list">AMP List</a> is "items".  {items: [...]}.</p>
-    <p>Our JSON file has one array, "items", containing objects with a "title" and "songLink"</p>
-    <code>
+    <div [hidden]="ex3_Hidden" id="ex3" class="ex">
+      <!-- mustache template inside amp-list that consumes data.json -->
+      <p>The default value for <a href="https://www.ampproject.org/docs/reference/components/amp-list">AMP List</a> is
+        "items". {items: [...]}.</p>
+      <p>Our JSON file has one array, "items", containing objects with a "title" and "songLink"</p>
+      <code>
         {"items": [{"title": "Ten Cent Pistol","songLink": "https://open.spotify.com/track/..."}]}
     </code>
-    <p>An <a href="https://www.ampproject.org/docs/reference/components/amp-mustache">AMP Mustache</a> template is placed inside the AMP List to render all objects within the items array. <a href="https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md">Documentation.</a></p>
-    
-    <amp-list width="auto" height="100" layout="fixed-height" src="data/data.json">
-      <template type="amp-mustache">
-        <div>
-          <a href="{{ songLink }}">{{ title }}</a>
-        </div>
-      </template>
-    </amp-list>
-  </div>  
+      <p>An <a href="https://www.ampproject.org/docs/reference/components/amp-mustache">AMP Mustache</a> template is
+        placed inside the AMP List to render all objects within the items array. <a href="https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md">Documentation.</a></p>
 
-  <div class="logoWrap txtc bot">
+      <amp-list width="auto" height="100" layout="fixed-height" src="data/data.json">
+        <template type="amp-mustache">
+          <div>
+            <a href="{{ songLink }}">{{ title }}</a>
+          </div>
+        </template>
+      </amp-list>
+    </div>
+
+    <h2>
+      <button on="tap:AMP.setState({ ex4_Hidden: !ex4_Hidden })" [text]="ex4_Hidden != true ? '&#9660; Ex. 4: Custom Lightbox' : '&#9658; Ex. 4: Custom Lightbox' "
+        class="exTitle">&#9660; Ex. 4: Custom Lightbox</button>
+    </h2>
+
+    <div [hidden]="ex4_Hidden" id="ex4" class="ex">
+
+      <button id="open" on="tap:AMP.setState({ lightboxHidden: false }),close.focus">Open lightbox</button>
+      <div hidden [hidden]="lightboxHidden" class="lightbox">
+        <div class="inner">
+          <button id="close" on="tap:AMP.setState({ lightboxHidden: true }),open.focus">x</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/master/spec/amp-actions-and-events.md).-->
+    <button id="scrollToTopButton" on="tap:top-page.scrollTo(duration=200)" class="scrollToTop">⌃</button>
+
+    <!-- <div class="logoWrap txtc bot">
     <a href="https://www.ampproject.org/"><amp-img width="80" height="60" src="img/AMP-Brand-Blue.svg" alt="AMP Project icon"></amp-img></a>
+  </div> -->
   </div>
-</div>
+
 </body>
 
 </html>
