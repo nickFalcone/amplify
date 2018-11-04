@@ -1,5 +1,5 @@
 <!doctype html>
-<html amp lang="en">
+<html amp lang="en" [class]="showLightBox ? 'overflowHidden' : ''">
 
 <head>
   <meta charset="utf-8">
@@ -10,6 +10,9 @@
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
   <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
   <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
+  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
+  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+
   <title>Amplify</title>
   <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
   <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
@@ -28,40 +31,40 @@
 <body>
   <amp-animation id="showAnim" layout="nodisplay">
     <script type="application/json">
+      {
+        "duration": "200ms",
+        "fill": "both",
+        "iterations": "1",
+        "direction": "alternate",
+        "animations": [
           {
-            "duration": "200ms",
-             "fill": "both",
-             "iterations": "1",
-             "direction": "alternate",
-             "animations": [
-               {
-                 "selector": "#scrollToTopButton",
-                 "keyframes": [
-                   { "opacity": "1", "visibility": "visible" }
-                 ]
-               }
-             ]
+            "selector": "#scrollToTopButton",
+            "keyframes": [
+              { "opacity": "1", "visibility": "visible" }
+            ]
           }
-        </script>
+        ]
+      }
+    </script>
   </amp-animation>
   <!-- ... and the second one is for adding the button.-->
   <amp-animation id="hideAnim" layout="nodisplay">
     <script type="application/json">
-         {
-           "duration": "200ms",
-             "fill": "both",
-             "iterations": "1",
-             "direction": "alternate",
-             "animations": [
-               {
-                 "selector": "#scrollToTopButton",
-                 "keyframes": [
-                   { "opacity": "0", "visibility": "hidden" }
-                 ]
-               }
-             ]
-         }
-       </script>
+      {
+        "duration": "200ms",
+        "fill": "both",
+        "iterations": "1",
+        "direction": "alternate",
+        "animations": [
+          {
+            "selector": "#scrollToTopButton",
+            "keyframes": [
+              { "opacity": "0", "visibility": "visible" }
+            ]
+          }
+        ]
+      }
+    </script>
   </amp-animation>
   <!-- We use `amp-position-observer` to start the animation when the user starts to scroll. -->
   <div id="marker">
@@ -76,7 +79,7 @@
           "ex2_Hidden": false,
           "ex3_Hidden": false,
           "ex4_Hidden": false,
-          "lightboxHidden": true
+          "showLightBox": false
         }
       </script>
     </amp-state>
@@ -88,7 +91,7 @@
     </div>
 
     <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage
-      instructions. Made by <a href="http://nickfalcone.net">Nick Falcone</a></p>
+      instructions. Made by <a href="http://www.nickfalcone.net">Nick Falcone</a></p>
 
     <h2>
       <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' "
@@ -117,9 +120,12 @@
       <!-- query params -->
       <!-- https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md -->
       <!-- with a URL of "http://localhost:3000/?abc=something" clicking link below should apend ?abc=something to destination URL -->
-      <p>Add <strong>/?abc=something</strong> to the end of the URL, and press enter. The link below should resolve to:<br>
+      <p>Add <strong>/?abc=something</strong> to the end of the URL, and reload the page. The link below should resolve to:<br>
         <em>www.example.com/?abc=something.</em></p>
       <a href="https://example.com?abc=QUERY_PARAM(abc)" data-amp-replace="QUERY_PARAM">Example 2</a>
+      <p>
+        <code>&lt;a href=&quot;https://example.com?abc=QUERY_PARAM(abc)&quot; data-amp-replace=&quot;QUERY_PARAM&quot;&gt;Example 2&lt;/a&gt;</code>
+      </p>
     </div>
 
     <h2>
@@ -154,23 +160,45 @@
 
     <div [hidden]="ex4_Hidden" id="ex4" class="ex">
 
-      <button id="open" on="tap:AMP.setState({ lightboxHidden: false }),close.focus">Open lightbox</button>
-      <div hidden [hidden]="lightboxHidden" class="lightbox">
+      <button id="open" on="tap:AMP.setState({ showLightBox: true }),close.focus">Open lightbox</button>
+      <div hidden [hidden]="!showLightBox" class="lightbox">
         <div class="inner">
-          <button id="close" on="tap:AMP.setState({ lightboxHidden: true }),open.focus">x</button>
+          <button id="close" on="tap:AMP.setState({ showLightBox: false }),open.focus">x</button>
+          <p>When 'open lightbox' button is tapped, set showLightBox true. The lightbox div is hidden by default with the hidden parameter. We set a binding hidden parameter to equal !showLightbBox, so hidden = !true (hidden = false when showLightBox = true). Focus is passed to the close button, and a class with rule overflow: hidden is set on the html element to prevent background scrolling.</p>
         </div>
       </div>
 
     </div>
 
+    <h2>
+      <button on="tap:AMP.setState({ ex5_Hidden: !ex5_Hidden })" [text]="ex5_Hidden != true ? '&#9660; Ex. 5: Squaring with amp-bind-macro' : '&#9658; Ex. 5: Squaring with amp-bind-macro' "
+        class="exTitle">&#9660; Ex. 5: Squaring with amp-bind-macro</button>
+    </h2>
+
+    <div [hidden]="ex5_Hidden" id="ex5" class="ex">
+
+        <amp-bind-macro id="square" arguments="num1" expression="num1 * num1" />
+
+        <input type="number" value="0" id="num1"
+          on="input-throttled:AMP.setState({num1: event.value})"
+        />
+        <label for="input"><sup>2</sup>&nbsp;=&nbsp;</label><span [text]="square(num1)">0</span>
+
+        <p>We define an <a href="https://www.ampproject.org/docs/reference/components/amp-bind#defining-macros-with-amp-bind-macro">amp-bind-macro</a> with id 'square', one argument 'num1', and expression 'num1 * num1'</p>
+        <p>When the input value is changed, num1 is set to this value</p>
+        <p>A text binding calls square with argument num1</p>
+        <code>&lt;amp-bind-macro id=&quot;square&quot; arguments=&quot;num1&quot; expression=&quot;num1 * num1&quot; /&gt;
+
+            &lt;input type=&quot;number&quot; value=&quot;0&quot; id=&quot;num1&quot;
+              on=&quot;input-throttled:AMP.setState({num1: event.value})&quot;
+            /&gt;
+            &lt;label for=&quot;input&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&amp;nbsp;=&amp;nbsp;&lt;/label&gt;&lt;span [text]=&quot;square(num1)&quot;&gt;0&lt;/span&gt;</code>
+
+    </div>
+
     <!-- We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/master/spec/amp-actions-and-events.md).-->
-    <button id="scrollToTopButton" on="tap:top-page.scrollTo(duration=200)" class="scrollToTop">⌃</button>
-
-    <!-- <div class="logoWrap txtc bot">
-    <a href="https://www.ampproject.org/"><amp-img width="80" height="60" src="img/AMP-Brand-Blue.svg" alt="AMP Project icon"></amp-img></a>
-  </div> -->
+    <button id="scrollToTopButton" on="tap:top-page.scrollTo(duration=200)" class="scrollToTop" [hidden]="showLightBox">▲</button>
   </div>
-
 </body>
 
 </html>
