@@ -22,7 +22,7 @@ gulp.task('scss', () => {
 
 gulp.task('html', () => {
   let cssContent = fs.readFileSync("src/style/style.css", "utf8");
-  gulp.src("src/components/*.html")
+  gulp.src("src/components/*")
     .pipe(inject.after('style amp-custom>', cssContent))
     .pipe(htmlmin({ collapseWhitespace: true }))
     .pipe(gulp.dest("public/"))
@@ -32,7 +32,12 @@ gulp.task('html', () => {
 });
 
 gulp.task('data', () => {
-  gulp.src("src/data/*.json")
+  gulp.src("CNAME")
+    .pipe(gulp.dest("public/"))
+    .pipe(reload({
+      stream: true
+    }));
+    gulp.src("src/data/*.json")
     .pipe(gulp.dest("public/data/"))
     .pipe(reload({
       stream: true
@@ -40,7 +45,7 @@ gulp.task('data', () => {
 });
 
 gulp.task('amphtml:validate', () => {
-  return gulp.src("public/*.html")
+  return gulp.src("public/index.html")
     .pipe(gulpAmpValidator.validate())
     .pipe(gulpAmpValidator.format())
     .pipe(gulpAmpValidator.failAfterError());

@@ -3,27 +3,45 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,minimum-scale=1">
+  <meta name="description" content="This is the AMP Boilerplate.">
+  <link rel="preload" as="script" href="https://cdn.ampproject.org/v0.js">
+  <link rel="preload" as="script" href="https://cdn.ampproject.org/v0/amp-iframe-0.1.js">
+  <link rel="preconnect dns-prefetch" href="https://fonts.gstatic.com/" crossorigin>
   <script async src="https://cdn.ampproject.org/v0.js"></script>
-  <!-- the following custom-elements are used for the examples below but are not needed to run the build -->
+  <script async custom-element="amp-iframe" src="https://cdn.ampproject.org/v0/amp-iframe-0.1.js"></script>
   <script async custom-element="amp-bind" src="https://cdn.ampproject.org/v0/amp-bind-0.1.js"></script>
   <script async custom-element="amp-list" src="https://cdn.ampproject.org/v0/amp-list-0.1.js"></script>
   <script async custom-template="amp-mustache" src="https://cdn.ampproject.org/v0/amp-mustache-0.2.js"></script>
   <script async custom-element="amp-animation" src="https://cdn.ampproject.org/v0/amp-animation-0.1.js"></script>
   <script async custom-element="amp-position-observer" src="https://cdn.ampproject.org/v0/amp-position-observer-0.1.js"></script>
-  <script async custom-element="amp-form" src="https://cdn.ampproject.org/v0/amp-form-0.1.js"></script>
-  <script async custom-element="amp-selector" src="https://cdn.ampproject.org/v0/amp-selector-0.1.js"></script>
+  <script async custom-element="amp-analytics" src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"></script>
 
   <title>Amplify</title>
-  <link rel="canonical" href="http://example.ampproject.org/article-metadata.html">
-  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1,user-scalable=0">
+  <link rel="canonical" href="https://amplify.surge.sh">
   <script type="application/ld+json">
     {
-      "@context": "http://schema.org"
+      "@context": "http://schema.org",
+      "@type": "Webpage",
+      "url": "https://amplify.surge.sh",
+      "name": "Amplify",
+      "headline": "Amplify",
+      "description": "a site of AMP examples",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.example.com"
+      },
+      "publisher": {
+        "@type": "person",
+        "name": "Nick Falcone",
+        "url": "http://www.nickfalcone.net"
+      }
     }
-  </script>
+    </script>
   <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript>
     <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>
   </noscript>
+  <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
   <style amp-custom></style>
   <meta name="amp-link-variable-allowed-origin" content="https://example.com">
 </head>
@@ -75,6 +93,7 @@
       <script type="application/json">
         {
           "i": 0,
+          "ex0_Hidden": false,
           "ex1_Hidden": false,
           "ex2_Hidden": false,
           "ex3_Hidden": false,
@@ -86,13 +105,38 @@
 
     <div class="logoWrap">
       <amp-img width="50" height="50" src="img/amplifier.svg" alt="amplifier icon" class="icon"></amp-img>
-      <h1>Amplify</h1> <p><strong>A static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by
-        Example</a> and personal experience.</strong></p>
+      <h1>Amplify</h1>
+      <p>Amplify is a static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by
+            Example</a> and personal experience. See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README
+          on GitHub</a>, made by <a href="http://www.nickfalcone.net">Nick Falcone</a></p>
     </div>
+    <h2>
+      <button on="tap:AMP.setState({ ex0_Hidden: !ex0_Hidden })" [text]="ex0_Hidden != true ? '&#9660; Ex. 0: Fun with amp-iframe' : '&#9658; Ex. 0: Fun with amp-iframe' "
+        class="exTitle">&#9660; Ex. 0: Fun with amp-iframe</button>
+    </h2>
+    <div [hidden]="ex0_Hidden" id="ex0" class="ex">
+      <p>Including a <a href="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png">placeholder image</a> lets us place an iframe within the first 75% or first 600px of the viewport. See the placeholder image <a href="https://www.ampproject.org/docs/reference/components/amp-iframe#iframe-with-placeholder">documentation.</a>
+        </p>
+        <amp-iframe width="400" title="Canoe - Dust Collectors" id="spotify" height="100" layout="responsive"
+        sandbox="allow-scripts allow-same-origin allow-popups" frameborder="0" allow="encrypted-media" src="https://open.spotify.com/embed/track/7IHO2H5PYGcjimSP6qBnaF">
+        <!-- <amp-iframe> must be positioned outside the first 75% of the viewport or 600px from the top (whichever is smaller)  -->
+        <!-- can get around positioning rules by including an <amp-img> containing a 'placeholder' attribute within the <amp-iframe> -->
+        <!-- this is a 1x1 px transparent png that won't be noticed by users satisfies the positioning requirements -->
+        <amp-img class="placeholder" layout="fill" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" placeholder></amp-img>
+      </amp-iframe>
+      <p>Without the placeholder image the iframe does not render, and a warning is displayed when in <a href="https://www.ampproject.org/docs/fundamentals/validate#browser-developer-console">development</a></p>
 
-    <p>See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a> for usage
-      instructions. Made by <a href="http://www.nickfalcone.net">Nick Falcone</a></p>
-
+      <!-- allow-same-origin -->
+      <!-- src="https://int.nyt.com/applications/elections/2018/widget/map/2018-11-06?office=house&amp;map_type=leader&amp;disable_zoom=true" -->
+      <p>Running user-authored JS in AMP is possible if done within an amp-iframe. Set the iframe's <code>sandbox="allow-scripts allow-modals"</code>
+        and <code>src</code> to the path of a new (non-AMP) HTML file. Place a <code>&lt;script&gt;</code> tag within
+        the body. If done correctly, the script (from the non-AMP file) will run when the AMP page loads. The button below runs the <code>alert()</code> function while still valid AMP.</p>
+      <amp-iframe title="run scripts" width="2" height="100" layout="responsive" sandbox="allow-scripts allow-modals" resizable="" src="/run-script.html"
+        class="" scrolling="no" frameborder="0" style="height: 50px;">
+        <amp-img class="placeholder" layout="fill" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" placeholder></amp-img>
+        <div overflow="" tabindex="0" role="button" aria-label="See more" class=""></div>
+      </amp-iframe>
+    </div>
     <h2>
       <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' "
         class="exTitle">&#9660; Ex. 1: Simple Counter</button>
@@ -108,32 +152,15 @@
       <span [text]="+i">0</span>
       <button on="tap:AMP.setState({ i: i + 1 })">+</button>
       <br>
-      <button on="tap:AMP.setState({ i: 0 })">Reset</button>
+      <button on="tap:AMP.setState({ i: 0 })">CLR</button>
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '&#9660; Ex. 2: Passing Parameters from URL' : '&#9658; Ex. 2: Passing Parameters from URL' "
-        class="exTitle">&#9660; Ex. 2: Passing Parameters from URL</button>
+      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '&#9660; Ex. 2: Retrieve Data with AMP List' : '&#9658; Ex. 2: Retrieve Data with AMP List' "
+        class="exTitle">&#9660; Ex. 2: Retrieve Data with AMP List</button>
     </h2>
 
     <div [hidden]="ex2_Hidden" id="ex2" class="ex">
-      <!-- query params -->
-      <!-- https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md -->
-      <!-- with a URL of "http://localhost:3000/?abc=something" clicking link below should apend ?abc=something to destination URL -->
-      <p>Add <strong>/?abc=something</strong> to the end of the URL, and reload the page. The link below should resolve to:<br>
-        <em>www.example.com/?abc=something.</em></p>
-      <a href="https://example.com?abc=QUERY_PARAM(abc)" data-amp-replace="QUERY_PARAM">Example 2</a>
-      <p>
-        <code>&lt;a href=&quot;https://example.com?abc=QUERY_PARAM(abc)&quot; data-amp-replace=&quot;QUERY_PARAM&quot;&gt;Example 2&lt;/a&gt;</code>
-      </p>
-    </div>
-
-    <h2>
-      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '&#9660; Ex. 3: Retrieve Data with AMP List' : '&#9658; Ex. 3: Retrieve Data with AMP List' "
-        class="exTitle">&#9660; Ex. 3: Retrieve Data with AMP List</button>
-    </h2>
-
-    <div [hidden]="ex3_Hidden" id="ex3" class="ex">
       <!-- mustache template inside amp-list that consumes data.json -->
       <p>The default value for <a href="https://www.ampproject.org/docs/reference/components/amp-list">AMP List</a> is
         "items". {items: [...]}.</p>
@@ -142,7 +169,7 @@
         {"items": [{"title": "Ten Cent Pistol","songLink": "https://open.spotify.com/track/..."}]}
     </code>
       <p>An <a href="https://www.ampproject.org/docs/reference/components/amp-mustache">AMP Mustache</a> template is
-        placed inside the AMP List to render all objects within the items array. <a href="https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md">Documentation.</a></p>
+        placed inside the AMP List to render all objects within the items array.</p>
 
       <amp-list width="auto" height="100" layout="fixed-height" src="data/data.json">
         <template type="amp-mustache">
@@ -154,51 +181,95 @@
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex4_Hidden: !ex4_Hidden })" [text]="ex4_Hidden != true ? '&#9660; Ex. 4: Custom Lightbox' : '&#9658; Ex. 4: Custom Lightbox' "
-        class="exTitle">&#9660; Ex. 4: Custom Lightbox</button>
+      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '&#9660; Ex. 3: Custom Lightbox' : '&#9658; Ex. 3: Custom Lightbox' "
+        class="exTitle">&#9660; Ex. 3: Custom Lightbox</button>
     </h2>
 
-    <div [hidden]="ex4_Hidden" id="ex4" class="ex">
-
+    <div [hidden]="ex3_Hidden" id="ex3" class="ex">
+      <p>When 'open lightbox' button is tapped, set showLightBox true. The lightbox div is hidden by default with the
+        hidden parameter. We set a binding hidden parameter to equal !showLightbBox, so hidden = !true (hidden = false
+        when showLightBox = true). Focus is passed to the close button, and a class with rule overflow: hidden is set
+        on the html element to prevent background scrolling.</p>
       <button id="open" on="tap:AMP.setState({ showLightBox: true }),close.focus">Open lightbox</button>
       <div hidden [hidden]="!showLightBox" class="lightbox">
         <div class="inner">
           <button id="close" on="tap:AMP.setState({ showLightBox: false }),open.focus">x</button>
-          <p>When 'open lightbox' button is tapped, set showLightBox true. The lightbox div is hidden by default with the hidden parameter. We set a binding hidden parameter to equal !showLightbBox, so hidden = !true (hidden = false when showLightBox = true). Focus is passed to the close button, and a class with rule overflow: hidden is set on the html element to prevent background scrolling.</p>
+          <pre>
+      _
+     ( ((
+     \ =\
+    __\_ `-\
+    (____))(  \----
+    (____)) _
+    (____))
+    (____))____/----
+          </pre>
         </div>
       </div>
 
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex5_Hidden: !ex5_Hidden })" [text]="ex5_Hidden != true ? '&#9660; Ex. 5: Squaring with amp-bind-macro' : '&#9658; Ex. 5: Squaring with amp-bind-macro' "
-        class="exTitle">&#9660; Ex. 5: Squaring with amp-bind-macro</button>
+      <button on="tap:AMP.setState({ ex4_Hidden: !ex4_Hidden })" [text]="ex4_Hidden != true ? '&#9660; Ex. 4: Squaring with amp-bind-macro' : '&#9658; Ex. 4: Squaring with amp-bind-macro' "
+        class="exTitle">&#9660; Ex. 4: Squaring with amp-bind-macro</button>
     </h2>
 
+    <div [hidden]="ex4_Hidden" id="ex4" class="ex">
+
+      <amp-bind-macro id="square" arguments="num" expression="num * num" />
+
+      <label for="num">Num:</label><input type="number" value="0" id="num" on="input-throttled:AMP.setState({num: event.value})" />
+      <span><sup>2</sup>&nbsp;=&nbsp;</span><span [text]="square(num)">0</span>
+
+      <p>We define an <a href="https://www.ampproject.org/docs/reference/components/amp-bind#defining-macros-with-amp-bind-macro">amp-bind-macro</a>
+        with id 'square', one argument 'num', and expression 'num * num'</p>
+      <p>When the input value is changed, num is set to this value</p>
+      <p>A text binding calls square with argument num</p>
+      <code>&lt;amp-bind-macro id=&quot;square&quot; arguments=&quot;num&quot; expression=&quot;num * num&quot; /&gt;
+
+        &lt;input type=&quot;number&quot; value=&quot;0&quot; id=&quot;num&quot;
+          on=&quot;input-throttled:AMP.setState({num: event.value})&quot;
+        /&gt;
+        &lt;label for=&quot;input&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&amp;nbsp;=&amp;nbsp;&lt;/label&gt;&lt;span [text]=&quot;square(num)&quot;&gt;0&lt;/span&gt;</code>
+
+    </div>
+
+    <h2>
+      <button on="tap:AMP.setState({ ex5_Hidden: !ex5_Hidden })" [text]="ex5_Hidden != true ? '&#9660; Ex. 5: Passing Parameters from URL' : '&#9658; Ex. 5: Passing Parameters from URL' "
+        class="exTitle">&#9660; Ex. 5: Passing Parameters from URL</button>
+    </h2>
     <div [hidden]="ex5_Hidden" id="ex5" class="ex">
-
-        <amp-bind-macro id="square" arguments="num1" expression="num1 * num1" />
-
-        <input type="number" value="0" id="num1"
-          on="input-throttled:AMP.setState({num1: event.value})"
-        />
-        <label for="input"><sup>2</sup>&nbsp;=&nbsp;</label><span [text]="square(num1)">0</span>
-
-        <p>We define an <a href="https://www.ampproject.org/docs/reference/components/amp-bind#defining-macros-with-amp-bind-macro">amp-bind-macro</a> with id 'square', one argument 'num1', and expression 'num1 * num1'</p>
-        <p>When the input value is changed, num1 is set to this value</p>
-        <p>A text binding calls square with argument num1</p>
-        <code>&lt;amp-bind-macro id=&quot;square&quot; arguments=&quot;num1&quot; expression=&quot;num1 * num1&quot; /&gt;
-
-            &lt;input type=&quot;number&quot; value=&quot;0&quot; id=&quot;num1&quot;
-              on=&quot;input-throttled:AMP.setState({num1: event.value})&quot;
-            /&gt;
-            &lt;label for=&quot;input&quot;&gt;&lt;sup&gt;2&lt;/sup&gt;&amp;nbsp;=&amp;nbsp;&lt;/label&gt;&lt;span [text]=&quot;square(num1)&quot;&gt;0&lt;/span&gt;</code>
-
+      <!-- query params -->
+      <!-- https://github.com/ampproject/amphtml/blob/master/spec/amp-var-substitutions.md -->
+      <!-- with a URL of "http://localhost:3000/?abc=something" clicking link below should apend ?abc=something to destination URL -->
+      <p>Add <strong>/?abc=something</strong> to the end of the URL, and reload the page. The link below should resolve
+        to:<br>
+        <em>www.example.com/?abc=something.</em></p>
+      <a href="https://example.com?abc=QUERY_PARAM(abc)" data-amp-replace="QUERY_PARAM">Example 5</a>
+      <p>
+        <code>&lt;a href=&quot;https://example.com?abc=QUERY_PARAM(abc)&quot; data-amp-replace=&quot;QUERY_PARAM&quot;&gt;Example 2&lt;/a&gt;</code>
+      </p>
     </div>
 
     <!-- We use the `scrollTo` action to scroll the page when the button is tapped. Find more about actions [here](https://github.com/ampproject/amphtml/blob/master/spec/amp-actions-and-events.md).-->
     <button id="scrollToTopButton" on="tap:top-page.scrollTo(duration=200)" class="scrollToTop" [hidden]="showLightBox">▲</button>
   </div>
+
+  <amp-analytics type="googleanalytics">
+    <script type="application/json">
+    {
+      "vars": {
+        "account": "UA-105095648-2"
+      },
+      "triggers": {
+        "trackPageview": {
+          "on": "visible",
+          "request": "pageview"
+        }
+      }
+    }
+    </script>
+  </amp-analytics>
 </body>
 
 </html>

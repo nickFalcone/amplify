@@ -10,22 +10,43 @@ body {
   min-height: 100vh;
   padding-bottom: 50px;
   background: linear-gradient(45deg,rgb(188, 244, 255), #fff);
+  code {
+    background-color: rgb(224, 224, 224);
+    color: rgb(0, 0, 0);
+    border: 1px solid rgb(31, 31, 31);
+    border-radius: 2px;
+    padding: 0.25px 1px;
+    white-space: nowrap;
+  }
+  pre {
+    font-size: 24px;
+  }
   .logoWrap {
-    width: 100%;
     .icon {
       margin: 10px;
+      display: inline-block;
+      margin: 5px 0 0 10px;
     }
     h1 {
-      vertical-align: bottom;
+      font-family: 'Pacifico', Arial, sans-serif;
+      vertical-align: top;
       display: inline-block;
       color: #1C79C0;
-      font-size: 30px;
-      line-height: 30px;
-      margin-left: 10px;
+      font-size: 34px;
+      margin: 0 0 0 10px;
     }
     p {
-      display: inline-block;
+      padding: 10px;
     }
+  }
+  @media screen and (min-width: 350px) {
+    #spotify {
+      max-height: 80px;
+    }
+  }
+  .placeholder {
+    height: 1px;
+    width: 1px;
   }
   #ex1 {
     span {
@@ -37,7 +58,8 @@ body {
       color: #fff;
       padding: 10px;
       margin: 20px;
-      border-radius: 5px;
+      width: 60px;
+      height: 60px;
     }
   }
   #ex5 {
@@ -52,7 +74,7 @@ body {
   }
   p {
     margin: 0;
-    padding: 10px;
+    padding: 5px;
     color: #1C79C0;
   }
   code {
@@ -133,7 +155,7 @@ body {
   .scrollToTop {
     color: #fff;
     font-size: 1.4em;
-    box-shadow: 0 3px 1.5px 0 rgba(0,0,0,.12), 0 3px 3px 0 rgba(0,0,0,.24);
+    box-shadow: 0 3px 3px 3px rgba(0,0,0,.12), 0 3px 3px 0 rgba(0,0,0,.24);
     width: 50px;
     height: 50px;
     border-radius: 100px;

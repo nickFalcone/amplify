@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <button id="popup">popup</button>
+  <label for="input"></label><input id= "input" type="text" placeholder="Type something..."><span id="emoji">➡️</span><span id="result"></span>
+</head>
+
+<body>
+  <style>
+    #popup {
+      background: none;
+      color: #fff;
+      border: none;
+      outline: none;
+      background-color: #1C79C0;
+      padding: 5px 10px;
+    }
+    input {
+      width: 100px;
+    }
+    #emoji {
+      padding: 0 10px;
+    }
+  </style>
+  <script>
+    console.log(location.href);
+
+    console.log('This is custom JS in AMP.');
+    const popup = document.getElementById('popup');
+    popup.addEventListener('click', () => {
+      alert('This is custom JS in AMP.');
+    });
+
+    const input = document.getElementById('input');
+    // const result = document.getElementById('result');
+    const url = document.getElementById('url');
+    input.addEventListener('keyup', () => {
+      result.textContent = input.value;
+    });
+
+    window.addEventListener('load', () => {
+      console.log('All assets loaded.');
+    });
+  </script>
+</body>
+
+</html>
