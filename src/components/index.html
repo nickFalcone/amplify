@@ -47,6 +47,7 @@
 </head>
 
 <body>
+  <!-- https://ampbyexample.com/playground/#url=https://ampbyexample.com/visual_effects/scroll_to_top/source/ -->
   <amp-animation id="showAnim" layout="nodisplay">
     <script type="application/json">
       {
@@ -65,7 +66,6 @@
       }
     </script>
   </amp-animation>
-  <!-- ... and the second one is for adding the button.-->
   <amp-animation id="hideAnim" layout="nodisplay">
     <script type="application/json">
       {
@@ -111,8 +111,8 @@
           on GitHub</a>, made by <a href="http://www.nickfalcone.net">Nick Falcone</a></p>
     </div>
     <h2>
-      <button on="tap:AMP.setState({ ex0_Hidden: !ex0_Hidden })" [text]="ex0_Hidden != true ? '&#9660; Ex. 0: Fun with amp-iframe' : '&#9658; Ex. 0: Fun with amp-iframe' "
-        class="exTitle">&#9660; Ex. 0: Fun with amp-iframe</button>
+      <button on="tap:AMP.setState({ ex0_Hidden: !ex0_Hidden })" [text]="ex0_Hidden != true ? '🔽 Ex. 0: Fun with amp-iframe' : '▶️ Ex. 0: Fun with amp-iframe' "
+        class="exTitle">🔽 Ex. 0: Fun with amp-iframe</button>
     </h2>
     <div [hidden]="ex0_Hidden" id="ex0" class="ex">
       <p>Including a <a href="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png">placeholder image</a> lets us place an iframe within the first 75% or first 600px of the viewport. See the placeholder image <a href="https://www.ampproject.org/docs/reference/components/amp-iframe#iframe-with-placeholder">documentation.</a>
@@ -131,15 +131,16 @@
       <p>Running user-authored JS in AMP is possible if done within an amp-iframe. Set the iframe's <code>sandbox="allow-scripts allow-modals"</code>
         and <code>src</code> to the path of a new (non-AMP) HTML file. Place a <code>&lt;script&gt;</code> tag within
         the body. If done correctly, the script (from the non-AMP file) will run when the AMP page loads. The button below runs the <code>alert()</code> function while still valid AMP.</p>
-      <amp-iframe title="run scripts" width="2" height="100" layout="responsive" sandbox="allow-scripts allow-modals" resizable="" src="/run-script.html"
-        class="" scrolling="no" frameborder="0" style="height: 50px;">
+
+      <amp-iframe title="run scripts" width="320" height="300" layout="responsive" sandbox="allow-scripts allow-modals" resizable="" src="/run-script.html"
+        class="" scrolling="no" frameborder="0" style="height: 300px; margin: 0;">
         <amp-img class="placeholder" layout="fill" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" placeholder></amp-img>
         <div overflow="" tabindex="0" role="button" aria-label="See more" class=""></div>
       </amp-iframe>
     </div>
     <h2>
-      <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '&#9660; Ex. 1: Simple Counter' : '&#9658; Ex. 1: Simple Counter' "
-        class="exTitle">&#9660; Ex. 1: Simple Counter</button>
+      <button on="tap:AMP.setState({ ex1_Hidden: !ex1_Hidden })" [text]="ex1_Hidden != true ? '🔽 Ex. 1: Simple Counter' : '▶️ Ex. 1: Simple Counter' "
+        class="exTitle">🔽 Ex. 1: Simple Counter</button>
     </h2>
 
     <div [hidden]="ex1_Hidden" id="ex1" class="ex txtc">
@@ -156,8 +157,8 @@
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '&#9660; Ex. 2: Retrieve Data with AMP List' : '&#9658; Ex. 2: Retrieve Data with AMP List' "
-        class="exTitle">&#9660; Ex. 2: Retrieve Data with AMP List</button>
+      <button on="tap:AMP.setState({ ex2_Hidden: !ex2_Hidden })" [text]="ex2_Hidden != true ? '🔽 Ex. 2: Retrieve Data with AMP List' : '▶️ Ex. 2: Retrieve Data with AMP List' "
+        class="exTitle">🔽 Ex. 2: Retrieve Data with AMP List</button>
     </h2>
 
     <div [hidden]="ex2_Hidden" id="ex2" class="ex">
@@ -181,8 +182,8 @@
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '&#9660; Ex. 3: Custom Lightbox' : '&#9658; Ex. 3: Custom Lightbox' "
-        class="exTitle">&#9660; Ex. 3: Custom Lightbox</button>
+      <button on="tap:AMP.setState({ ex3_Hidden: !ex3_Hidden })" [text]="ex3_Hidden != true ? '🔽 Ex. 3: Custom Lightbox' : '▶️ Ex. 3: Custom Lightbox' "
+        class="exTitle">🔽 Ex. 3: Custom Lightbox</button>
     </h2>
 
     <div [hidden]="ex3_Hidden" id="ex3" class="ex">
@@ -210,8 +211,8 @@
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex4_Hidden: !ex4_Hidden })" [text]="ex4_Hidden != true ? '&#9660; Ex. 4: Squaring with amp-bind-macro' : '&#9658; Ex. 4: Squaring with amp-bind-macro' "
-        class="exTitle">&#9660; Ex. 4: Squaring with amp-bind-macro</button>
+      <button on="tap:AMP.setState({ ex4_Hidden: !ex4_Hidden })" [text]="ex4_Hidden != true ? '🔽 Ex. 4: Squaring with amp-bind-macro' : '▶️ Ex. 4: Squaring with amp-bind-macro' "
+        class="exTitle">🔽 Ex. 4: Squaring with amp-bind-macro</button>
     </h2>
 
     <div [hidden]="ex4_Hidden" id="ex4" class="ex">
@@ -235,8 +236,8 @@
     </div>
 
     <h2>
-      <button on="tap:AMP.setState({ ex5_Hidden: !ex5_Hidden })" [text]="ex5_Hidden != true ? '&#9660; Ex. 5: Passing Parameters from URL' : '&#9658; Ex. 5: Passing Parameters from URL' "
-        class="exTitle">&#9660; Ex. 5: Passing Parameters from URL</button>
+      <button on="tap:AMP.setState({ ex5_Hidden: !ex5_Hidden })" [text]="ex5_Hidden != true ? '🔽 Ex. 5: Passing Parameters from URL' : '▶️ Ex. 5: Passing Parameters from URL' "
+        class="exTitle">🔽 Ex. 5: Passing Parameters from URL</button>
     </h2>
     <div [hidden]="ex5_Hidden" id="ex5" class="ex">
       <!-- query params -->

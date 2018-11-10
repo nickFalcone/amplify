@@ -3,12 +3,18 @@
 
 <head>
   <meta charset="UTF-8">
-  <button id="popup">popup</button>
-  <label for="input"></label><input id= "input" type="text" placeholder="Type something..."><span id="emoji">➡️</span><span id="result"></span>
 </head>
-
+<button id="popup">popup</button>
+<label for="input"></label><input id= "input" type="text" placeholder="Type something..."><span id="emoji">➡️</span><span id="result"></span>
+<p>We can import and use third-party libraries like Moment.js</p>
+<div>Today is: <span id="timeDest"></span></div>
+<p>If a link is included within the HTML file loaded in the amp-iframe, you can 'embed' the site <a href="https://momentjs.com/">on click</a>.</p>
 <body>
   <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
     #popup {
       background: none;
       color: #fff;
@@ -23,7 +29,13 @@
     #emoji {
       padding: 0 10px;
     }
+      p {
+      margin: 0;
+      padding: 5px;
+      color: #1C79C0;
+    }
   </style>
+
   <script>
     console.log(location.href);
 
@@ -42,8 +54,18 @@
 
     window.addEventListener('load', () => {
       console.log('All assets loaded.');
+      const timeDest = document.getElementById('timeDest');
+      const setTime = (e) => {
+        e.textContent = moment().format('MMMM Do YYYY, h:mm:ss a');
+      };
+      // call setTime  on load
+      setTime(timeDest);
+      // call setTime every 1 second
+      setInterval( () => { setTime(timeDest); }, 1000);
     });
+
   </script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
 </body>
 
 </html>
