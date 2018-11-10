@@ -8,7 +8,6 @@
 body {
   overflow: hidden;
   min-height: 100vh;
-  padding-bottom: 50px;
   background: linear-gradient(45deg,rgb(188, 244, 255), #fff);
   code {
     background-color: rgb(224, 224, 224);
@@ -16,7 +15,6 @@ body {
     border: 1px solid rgb(31, 31, 31);
     border-radius: 2px;
     padding: 0.25px 1px;
-    white-space: nowrap;
   }
   pre {
     font-size: 24px;
@@ -176,6 +174,12 @@ body {
     width: 0px;
     height: 0px;
   }
+  footer {
+    font-size: 10px;
+    color: #000;
+    padding: 10px;
+    text-align: center;
+  }
 }
 
 @media (min-width: 700px) {
@@ -186,30 +190,6 @@ body {
       overflow: hidden;
     }
   }
-}
-
-.autosuggest-container {
-  position: relative;
-}
-
-/*
- * Position the autosuggest box as an
- * overlay over the form fields.
- */
-.autosuggest-box {
-  position: absolute;
-  width: 100%;
-  /* make the overlay opaque */
-  background-color: #fafafa;
-}
-
-/*
- * Prevents a solid outline from appearing
- * around an item when the autosuggest box
- * is opened with an item already selected
- */
-.select-option.no-outline[selected] {
-  outline: initial;
 }
 
 .hidden {
