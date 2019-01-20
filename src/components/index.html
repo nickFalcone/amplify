@@ -106,9 +106,14 @@
     <div class="logoWrap">
       <amp-img width="50" height="50" src="img/amplifier.svg" alt="amplifier icon" class="icon"></amp-img>
       <h1>Amplify</h1>
-      <p>Amplify is a static AMP site generateor with selected examples from <a href="https://ampbyexample.com/">AMP by
-            Example</a> and personal experience. See the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README
-          on GitHub</a>, made by <a href="http://www.nickfalcone.net">Nick Falcone</a></p>
+      <p>Amplify is a static Accelerated Mobile Pages (AMP) site generateor that:</p>
+      <ol>
+        <li>Compiles SCSS to minified-CSS and injects the result into a <code>&lt;style amp-custom&gt;</code> tag</li>
+        <li>Compresses images</li>
+        <li>Provides live AMP validation</li>
+        <li>Pipes files into one folder for ease of publishing</li>
+      </ol>
+      <p>For more info see the <a href="https://github.com/nickFalcone/amplify/blob/master/README.md">README on GitHub</a>.</p>
     </div>
     <h2>
       <button on="tap:AMP.setState({ ex0_Hidden: !ex0_Hidden })" [text]="ex0_Hidden != true ? '🔽 Ex. 0: Fun with amp-iframe' : '▶️ Ex. 0: Fun with amp-iframe' "
@@ -124,7 +129,7 @@
         <!-- this is a 1x1 px transparent png that won't be noticed by users satisfies the positioning requirements -->
         <amp-img class="placeholder" layout="fill" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" placeholder></amp-img>
       </amp-iframe>
-      <p>Without the placeholder image the iframe does not render, and a warning is displayed when in <a href="https://www.ampproject.org/docs/fundamentals/validate#browser-developer-console">development</a></p>
+      <p>Without the placeholder image the iframe does not render and a validation error is thrown.</p>
 
       <!-- allow-same-origin -->
       <!-- src="https://int.nyt.com/applications/elections/2018/widget/map/2018-11-06?office=house&amp;map_type=leader&amp;disable_zoom=true" -->
@@ -133,7 +138,7 @@
         the body. If done correctly, the script (from the non-AMP file) will run when the AMP page loads. The button below runs the <code>alert()</code> function while still valid AMP.</p>
 
       <amp-iframe title="run scripts" width="320" height="300" layout="responsive" sandbox="allow-scripts allow-modals" resizable="" src="/run-script.html"
-        class="" scrolling="no" frameborder="0" style="height: 300px; margin: 0;">
+        class="" scrolling="no" frameborder="0" style="height: 75px; margin: 0;">
         <amp-img class="placeholder" layout="fill" src="https://upload.wikimedia.org/wikipedia/commons/c/ca/1x1.png" placeholder></amp-img>
         <div overflow="" tabindex="0" role="button" aria-label="See more" class=""></div>
       </amp-iframe>
@@ -256,7 +261,7 @@
     <button id="scrollToTopButton" on="tap:top-page.scrollTo(duration=200)" class="scrollToTop" [hidden]="showLightBox">▲</button>
   </div>
 
-  <footer>Amplify is not endorsed by, affiliated with, or sponsored by The Accelerated Mobile Pages Project or Google LLC. All product and company names are the registered trademarks of their original owners.</footer>
+  <footer>Amplify is not endorsed by, affiliated with, or sponsored by <a href="https://www.ampproject.org/">The Accelerated Mobile Pages Project</a> or Google LLC. <br>All product and company names are the registered trademarks of their original owners.</footer>
 
   <amp-analytics type="googleanalytics">
     <script type="application/json">

@@ -6,6 +6,9 @@
   overflow: hidden;
 }
 body {
+  p {
+    line-height: 24px;
+  }
   overflow: hidden;
   min-height: 100vh;
   background: linear-gradient(45deg,rgb(188, 244, 255), #fff);
@@ -32,9 +35,6 @@ body {
       color: #1C79C0;
       font-size: 34px;
       margin: 0 0 0 10px;
-    }
-    p {
-      padding: 10px;
     }
   }
   @media screen and (min-width: 350px) {
@@ -70,7 +70,10 @@ body {
   h2 {
     margin: 0;
   }
-  p {
+  ol {
+    margin: 0;
+  }
+  p, li {
     margin: 0;
     padding: 5px;
     color: #1C79C0;
@@ -161,8 +164,11 @@ body {
     outline: none;
     background: rgba(28, 121, 192, 0.5);
     z-index: 9999;
-    bottom: 100px;
-    left: 100px;
+    bottom: 15px;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
     position: fixed;
     opacity: 0;
     visibility: hidden;
@@ -198,10 +204,6 @@ body {
 
 @media only screen and (max-width: 500px) {
   body {
-    .scrollToTop {
-      font-size: 1rem;
-      text-align: center;
-    }
     .lightbox {
       .inner {
         left: calc(50vw - 150px);
@@ -209,6 +211,13 @@ body {
         width: 300px;
         height: 300px;
       }
+    }
+  }
+}
+@media only screen and (min-width: 840px) {
+  body {
+    .scrollToTop {
+      display: none;
     }
   }
 }
